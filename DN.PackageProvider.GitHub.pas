@@ -98,7 +98,8 @@ const
   CGithubIssueUrl = 'https://github.com/%s/%s/issues';
   CGithubDownloadUrl = 'https://api.github.com/repos/%s/%s/zipball/%s';
   CGithubFileContent = 'https://api.github.com/repos/%s/%s/contents/%s?ref=%s';//user/repo filepath/branch
-  CGitRepoSearch = 'https://api.github.com/search/repositories?q="Delphinus-Support"+in:readme&per_page=100';
+  //CGitRepoSearch = 'https://api.github.com/search/repositories?q="Delphinus-Support"+in:readme&per_page=100';
+  CGitRepoSearch = 'https://api.github.com/search/repositories?q="Delphinus-Support"+in:readme+org:InConTra&per_page=100';
   CGithubRepoReleases = 'https://api.github.com/repos/%s/%s/releases';// user/repo/releases
   CMediaTypeRaw = 'application/vnd.github.v3.raw';
   CPushDates = 'PushDates.ini';
