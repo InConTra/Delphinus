@@ -32,6 +32,7 @@ type
     function GetBDSCommonDir: string;
     function ReadShortName(const AName: string): string;
     function GetSupportedPlatforms: TDNCompilerPlatforms;
+    function GetComponentDirectory: string;
   public
     constructor Create(const ARoot: string);
     destructor Destroy; override;
@@ -46,6 +47,7 @@ type
     property Application: string read GetApplication;
     property BDSCommonDir: string read GetBDSCommonDir;
     property SupportedPlatforms: TDNCompilerPlatforms read GetSupportedPlatforms;
+    property ComponentDirectory: string read GetComponentDirectory;
   end;
 
 implementation
@@ -113,6 +115,11 @@ end;
 function TDNDelphInstallation.GetBDSVersion: string;
 begin
   Result := FBDSVersion;
+end;
+
+function TDNDelphInstallation.GetComponentDirectory: string;
+begin
+  Result := 'C:\ComponentiSW\'+ GetName+'\comps';
 end;
 
 function TDNDelphInstallation.GetDirectory: string;

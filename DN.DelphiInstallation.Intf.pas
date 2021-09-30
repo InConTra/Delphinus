@@ -19,6 +19,7 @@ type
     function GetBDSVersion: string;
     function GetBDSCommonDir: string;
     function GetSupportedPlatforms: TDNCompilerPlatforms;
+    function GetComponentDirectory: string;
 
     function IsRunning: Boolean;
     property Name: string read GetName;
@@ -31,6 +32,7 @@ type
     property Application: string read GetApplication;
     property BDSCommonDir: string read GetBDSCommonDir;
     property SupportedPlatforms: TDNCompilerPlatforms read GetSupportedPlatforms;
+    property ComponentDirectory: string read GetComponentDirectory;
   end;
 
 implementation

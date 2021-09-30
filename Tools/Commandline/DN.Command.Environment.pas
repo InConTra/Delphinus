@@ -132,7 +132,9 @@ begin
   LInstaller := TDNIDEInstaller.Create(LCompiler, LEnvironmentOptionsService, LBPLService, LVariableResolverFactory, LExpertService);
   LUninstaller := TDNIDEUninstaller.Create(LEnvironmentOptionsService, LBPLService, LExpertService);
   Result := TDNSetup.Create(LInstaller, LUninstaller, FOnlinePackageProvider);
-  Result.ComponentDirectory := TPath.Combine(FCurrentDelphi.BDSCommonDir, 'comps');
+  //Result.ComponentDirectory := TPath.Combine(FCurrentDelphi.BDSCommonDir, 'comps');
+  // This is only for "Install"; not used with "list installed" nor "uninstall"
+  Result.ComponentDirectory := FCurrentDelphi.ComponentDirectory;
   Result.OnMessage := DefaultMessageHandler;
 end;
 
@@ -186,7 +188,9 @@ begin
   if not Assigned(FInstalledPackageProvider) then
   begin
     RequiresCurrentDelphi();
-    LCompDir := TPath.Combine(FCurrentDelphi.BDSCommonDir, 'comps');
+    //LCompDir := TPath.Combine(FCurrentDelphi.BDSCommonDir, 'comps');
+    // This is for unistall or update
+    LCompDir := FCurrentDelphi.ComponentDirectory;
     FInstalledPackageProvider := FInstalledPackageProviderFactory(LCompDir);
   end;
   Result := FInstalledPackageProvider;
