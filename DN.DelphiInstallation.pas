@@ -18,6 +18,7 @@ type
     FEdition: string;
     FBDSVersion: string;
     FBDSCommonDir: string;
+    FBaseComponentDirectory: string;
     FSupportedPlatforms: TDNCompilerPlatforms;
     FIcon: TIcon;
     procedure Load;
@@ -117,9 +118,15 @@ begin
   Result := FBDSVersion;
 end;
 
+const
+  CDelphinusKey = 'Software\Delphinus';
+  CRootKey = HKEY_CURRENT_USER;
+  CBaseComponentDirectory = 'BaseComponentDirectory';
+  DefaultBaseComponentDirectory = 'C:\ComponentiSW';
+
 function TDNDelphInstallation.GetComponentDirectory: string;
 begin
-  Result := 'C:\ComponentiSW\'+ GetName+'\comps';
+  Result := TPath.Combine( DefaultBaseComponentDirectory, ReplaceStr( GetName, ' ', '') +'\comps');
 end;
 
 function TDNDelphInstallation.GetDirectory: string;
@@ -285,6 +292,23 @@ begin
   finally
     LRegistry.Free();
   end;
+
+  const CDelphinusKey = 'Software\Delphinus';
+  const CRootKey = HKEY_CURRENT_USER;
+  const CBaseComponentDirectory = 'BaseComponentDirectory';
+  FBaseComponentDirectory := 'C:\ComponentiSW';
+  LRegistry := TRegistry.Create();
+  try
+    LRegistry.RootKey := CRootKey;
+    if LRegistry.OpenKeyReadOnly(CDelphinusKey) then
+    begin
+      if LRegistry.ValueExists(CBaseComponentDirectory) then
+        FBaseComponentDirectory := LRegistry.ReadString(CBaseComponentDirectory);
+    end;
+  finally
+    LRegistry.Free;
+  end;
+
 end;
 
 end.
