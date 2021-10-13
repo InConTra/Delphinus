@@ -40,7 +40,10 @@ begin
   if Result then
   begin
     try
-      FRegistry.WriteString(ABPLFile, '');
+      //FRegistry.WriteString(ABPLFile, '');
+      // 13/10/2021 Loris. The value is mandatory to see in IDe the DesignTime packages:
+      FRegistry.WriteString(ABPLFile, TPath.GetFileNameWithoutExtension( ABPLFile) );
+      OutputDebugString( pchar('> '+ Self.ClassName +'.Install  ABPLFile="'+ABPLFile+'"'));
     finally
       FRegistry.CloseKey();
     end;

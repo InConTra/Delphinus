@@ -68,6 +68,7 @@ begin
     if Result then
     begin
       LRegistry.WriteString(ABPL, ExtractFileName(ABPL));
+      OutputDebugString( '> '+self.ClassName+'.InstallBPL ABPL="'+ABPL+'" ExtractFileName(ABPL)="'+ExtractFileName(ABPL)+'"');
     end;
   finally
     LRegistry.Free;

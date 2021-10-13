@@ -158,6 +158,7 @@ end;
 
 function TDNIDEInstaller.InstallBPL(const ABPL: string): Boolean;
 begin
+  OutputDebugString( pchar('> '+ Self.ClassName+'.InstallBPL ABPL="'+ ABPL+'"'));
   Result := FBPLService.Install(ABPL);
 end;
 

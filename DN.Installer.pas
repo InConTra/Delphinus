@@ -102,6 +102,7 @@ implementation
 
 uses
   IOUtils,
+  Windows,
   StrUtils,
   Masks,
   DN.Utils,
@@ -533,6 +534,7 @@ begin
       begin
         if (not AProject.IsRuntimeOnlyPackage) and (LPlatform = cpWin32) then
         begin
+          OutputDebugString( pchar( '> '+self.ClassName+'.ProcessProject  AProject.BinaryName="'+AProject.BinaryName+'"'));
           Result := InstallBPL(TPath.Combine(LResolver.Resolve(FCompiler.BPLOutput), AProject.BinaryName));
           if Result then
             DoMessage(mtNotification, 'installed')
