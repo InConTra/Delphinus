@@ -46,7 +46,7 @@ begin
 
     LSourceFolder := LShellObject.NameSpace(OLEVariant(AZipFile));
     LTargetFolder := LShellObject.NameSpace(OLEVariant(ATargetFolder));
-
+    OutputDebugString( pchar('> ATargetFolder="'+ATargetFolder+'"'));
     LShellFolderItems := LSourceFolder.Items;
     if (AFilter <> '') then
       LShellFolderItems.Filter(SHCONTF_INCLUDEHIDDEN or SHCONTF_NONFOLDERS or SHCONTF_FOLDERS, AFilter);

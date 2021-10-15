@@ -122,11 +122,11 @@ const
   CDelphinusKey = 'Software\Delphinus';
   CRootKey = HKEY_CURRENT_USER;
   CBaseComponentDirectory = 'BaseComponentDirectory';
-  DefaultBaseComponentDirectory = 'C:\ComponentiSW';
+  DefaultBaseComponentDirectory = 'C:\CompDelphi';
 
 function TDNDelphInstallation.GetComponentDirectory: string;
 begin
-  Result := TPath.Combine( DefaultBaseComponentDirectory, ReplaceStr( GetName, ' ', '') +'\comps');
+  Result := TPath.Combine( DefaultBaseComponentDirectory, ReplaceStr( GetShortName, ' ', '') {+'\comps'});
 end;
 
 function TDNDelphInstallation.GetDirectory: string;
@@ -296,7 +296,7 @@ begin
   const CDelphinusKey = 'Software\Delphinus';
   const CRootKey = HKEY_CURRENT_USER;
   const CBaseComponentDirectory = 'BaseComponentDirectory';
-  FBaseComponentDirectory := 'C:\ComponentiSW';
+  FBaseComponentDirectory := 'C:\CompDelphi';
   LRegistry := TRegistry.Create();
   try
     LRegistry.RootKey := CRootKey;

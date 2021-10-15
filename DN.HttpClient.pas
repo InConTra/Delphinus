@@ -43,6 +43,8 @@ type
 
 implementation
 
+uses Windows;
+
 { TDNHttpClient }
 
 procedure TDNHttpClient.BeginWork;
@@ -60,9 +62,11 @@ function TDNHttpClient.Download(const AUrl, ATargetFile: string): Integer;
 var
   LFile: TFileStream;
 begin
+  OutputDebugString( pchar( '> TDNHttpClient.Download  ATargetFile="'+ATargetFile+'"'));
   LFile := TFileStream.Create(ATargetFile, fmCreate or fmOpenReadWrite);
   try
     Result := Get(AUrl, LFile);
+    OutputDebugString( pchar( '> TDNHttpClient.Download Get Done AUrl="'+AUrl+'"'));
   finally
     LFile.Free;
   end;

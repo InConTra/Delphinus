@@ -196,6 +196,7 @@ begin
         ForceDirectories(ATarget);
       end;
       LTargetFile := TPath.Combine(ATarget, LFileName);
+      OutputDebugString( pchar('> TDNInstaller.CopyDirectory LTargetFile="'+LTargetFile+'"' ));
       TFile.Copy(LFile, LTargetFile, True);
       if Assigned(ACopiedFiles) then
         ACopiedFiles.Add(LTargetFile);
@@ -224,6 +225,7 @@ begin
   Result := True;
   LSourceInfo := TPath.Combine(ASourceDirectory, CInfoFile);
   LTargetInfo := TPath.Combine(ATargetDirectory, CInfoFile);
+  OutputDebugString( pchar('> TDNInstaller.CopyMetaData LTargetInfo="'+LTargetInfo+'"'));
   if TFile.Exists(LSourceInfo) then
   begin
     TFile.Copy(LSourceInfo, LTargetInfo, True);

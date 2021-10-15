@@ -76,11 +76,13 @@ implementation
 
 uses
   IOUtils,
+  Windows,
   DateUtils,
   DN.IOUtils,
   StrUtils,
   jpeg,
   pngimage,
+  Zip,
   DN.Version,
   DN.Package,
   DN.Zip,
@@ -275,13 +277,30 @@ var
   LDirs: TStringDynArray;
 begin
   Result := '';
-  LFolder := TPath.Combine(ARootDir, TGuid.NewGuid.ToString);
-  if ForceDirectories(LFolder) and ShellUnzip(AArchive, LFolder) then
-  begin
-    LDirs := TDirectory.GetDirectories(LFolder);
-    if Length(LDirs) = 1 then
-      Result := LDirs[0];
+  //LFolder := TPath.Combine(ARootDir, TGuid.NewGuid.ToString);
+  // Sostituito per Gestire errori durante unzip (nomi file troppo lunghi)
+  //if ForceDirectories(LFolder) and ShellUnzip(AArchive, LFolder) then
+//  begin
+//    LDirs := TDirectory.GetDirectories(LFolder);
+//    if Length(LDirs) = 1 then
+//      Result := LDirs[0];
+//  end;
+  LFolder := ARootDir;
+  try
+    ForceDirectories(LFolder);
+    TZipFile.ExtractZipFile( AArchive, LFolder );
+    if true then
+    begin
+      LDirs := TDirectory.GetDirectories(LFolder);
+      if Length(LDirs) = 1 then
+        Result := LDirs[0];
+    end;
+  except on  e: exception do
+    begin
+      OutputDebugString(pchar( '*** ExtractZipFile: '+ e.Message));
+    end;
   end;
+
   TFile.Delete(AArchive);
 end;
 
