@@ -29,6 +29,7 @@ type
     FPlatform: TDNCompilerPlatform;
     FLog: TStringList;
     FVariableResolverFactory: TDNCompilerVariableResolverFacory;
+    FSearchPaths: String;//incontra
     function GetEXEOutput: string;
     function GetDCPOutput: string;
     function GetDCUOutput: string;
@@ -46,6 +47,8 @@ type
     procedure SetPlatform(const Value: TDNCompilerPlatform);
     function GetParameterOverride(const AProperty: string): string;
     procedure SetParameterOverride(const AProperty: string; const Value: string);
+    function GetSearchPaths: string;//incontra
+    procedure SetSearchPaths(const Value: string);//incontra
   protected
     FParameterOverrides: TDictionary<string, string>;
     function GetVersion: TCompilerVersion; virtual;
@@ -58,6 +61,7 @@ type
     property DCPOutput: string read GetDCPOutput write SetDCPOutput;
     property EXEOutput: string read GetEXEOutput write SetEXEOutput;
     property BPLOutput: string read GetBPLOutput write SetBPLOutput;
+    property SearchPaths: string read GetSearchPaths write SetSearchPaths;//incontra
     property Target: TDNCompilerTarget read GetTarget write SetTarget;
     property Config: TDNCompilerConfig read GetConfig write SetConfig;
     property Platform: TDNCompilerPlatform read GetPlatform write SetPlatform;
@@ -118,6 +122,11 @@ begin
   Result := FPlatform;
 end;
 
+function TDNCompiler.GetSearchPaths: string;
+begin
+  result:= FSearchPaths;//incontra
+end;
+
 function TDNCompiler.GetBPLOutput: string;
 begin
   Result := FBPLOutput;
@@ -162,6 +171,11 @@ end;
 procedure TDNCompiler.SetPlatform(const Value: TDNCompilerPlatform);
 begin
   FPlatform := Value;
+end;
+
+procedure TDNCompiler.SetSearchPaths(const Value: string);
+begin
+ FSearchPaths:= value;//incontra
 end;
 
 procedure TDNCompiler.SetBPLOutput(const Value: string);

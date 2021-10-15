@@ -140,7 +140,10 @@ begin
 
   if BPLOutput <> '' then
     Result := Result + ' /p:DCC_BplOutput="' + LResolver.Resolve(ExcludeTrailingPathDelimiter(BPLOutput)) + '"';
-
+  if SearchPaths <> '' then //incontra
+  begin
+    Result := Result + ' /p:DCC_UnitSearchPath="' + LResolver.Resolve(ExcludeTrailingPathDelimiter(SearchPaths)) + '"';
+  end;
   Result := Result + ' ' + GetParameterOverrides(Config);
 end;
 

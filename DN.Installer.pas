@@ -165,6 +165,7 @@ begin
   ACompiler.ExeOutput := TPath.Combine(GetBinBaseDir(), '$(Platform)\$(Config)');
   ACompiler.BPLOutput := GetBPLDir(ACompiler.Platform);
   ACompiler.DCPOutput := GetDCPDir(ACompiler.Platform);
+  ACompiler.SearchPaths:= FSearchPathes; //incontra
 end;
 
 procedure TDNInstaller.CopyDirectory(const ASource, ATarget: string; AFileFilters: TStringDynArray; ARecursive: Boolean = False; ACopiedFiles: TStringList = nil);
@@ -714,6 +715,7 @@ function TDNInstaller.ProcessInstallation(AInstallation: TInstallationFile;
 var
   LLicense: string;
 begin
+  ProcessPathes(AInstallation.SearchPathes, ATargetDirectory, tpSearchPath);//incontra
   FProgress.SetTasks(['Copy Raw', 'Copy Source', 'Compile Projects', 'Adding Experts', 'Adding Pathes']);
   ProcessRawFolders(AInstallation.RawFolders, ASourceDirectory);
   FProgress.NextTask();
@@ -722,6 +724,7 @@ begin
   CopyMetaData(ASourceDirectory, ATargetDirectory);
   for LLicense in ALicenceFiles do
     CopyLicense(ASourceDirectory, ATargetDirectory, LLicense);
+
   FProgress.NextTask();
 
   Result := ProcessProjects(AInstallation.Projects, ATargetDirectory);

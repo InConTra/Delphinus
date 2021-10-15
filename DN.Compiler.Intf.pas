@@ -31,6 +31,8 @@ type
     procedure SetPlatform(const Value: TDNCompilerPlatform);
     function GetBPLOutput: string;
     procedure SetBPLOutput(const Value: string);
+    function GetSearchPaths: string; //incontra
+    procedure SetSearchPaths(const Value: string); //incontra
     function GetLog: TStrings;
     function GetVersion: TCompilerVersion;
     function GetParameterOverride(const AProperty: string): string;
@@ -40,6 +42,8 @@ type
     property DCPOutput: string read GetDCPOutput write SetDCPOutput;
     property ExeOutput: string read GetExeOutput write SetExeOutput;
     property BPLOutput: string read GetBPLOutput write SetBPLOutput;
+    property SearchPaths: string read GetSearchPaths write SetSearchPaths; //incontra
+
     property Target: TDNCompilerTarget read GetTarget write SetTarget;
     property Config: TDNCompilerConfig read GetConfig write SetConfig;
     property Platform: TDNCompilerPlatform read GetPlatform write SetPlatform;
