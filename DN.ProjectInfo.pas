@@ -257,7 +257,7 @@ begin
             end;
           end;
         end;
-        FSupportedPlatforms:=[];  //Incotra solo win32
+        FSupportedPlatforms:=[];  //Incontra solo win32
         if FSupportedPlatforms = [] then
           FSupportedPlatforms := [cpWin32];
         Result := True;
