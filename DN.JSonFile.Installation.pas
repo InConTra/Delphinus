@@ -87,6 +87,8 @@ implementation
 uses
   SysUtils,
   StrUtils,
+  JSON,
+  Generics.Collections,
   DN.Utils;
 
 { TInstallationFile }

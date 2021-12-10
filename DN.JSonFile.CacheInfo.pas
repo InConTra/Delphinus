@@ -11,6 +11,8 @@ interface
 
 uses
   Types,
+  JSON,
+  Generics.Collections,
   DN.JSonFile,
   DN.JSon;
 

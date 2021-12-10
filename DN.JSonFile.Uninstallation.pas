@@ -47,6 +47,8 @@ type
 implementation
 
 uses
+  JSON,
+  Generics.Collections,
   SysUtils;
 
 { TUninstallation }

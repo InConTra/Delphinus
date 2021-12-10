@@ -81,6 +81,7 @@ implementation
 
 uses
   StrUtils,
+  JSON,
   DN.Utils;
 
 { TInfoFile }
